@@ -11,6 +11,7 @@ namespace EmployeeWageOops
     {
         public const int WAGE_PER_HOUR = 20;
         public const int NUM_OF_WORKING_DAYS = 20;
+        public const int MAX_HRS_IN_MONTH = 100;
 
         public static int EmployeeAttende()
         {
@@ -41,15 +42,39 @@ namespace EmployeeWageOops
             return empWage;
         }
 
-        public static void EmployeeMonthlyWage()
+        public static int EmployeeMonthlyWage()
         {
             int totalEmpWage = 0 ;
             for(int i = 1; i<= NUM_OF_WORKING_DAYS; i++)
             {
                 totalEmpWage += EmployeeDailyWage();
             }
-            Console.WriteLine(totalEmpWage);
+            return totalEmpWage;
             
+        }
+
+        public static void EmpWageCondition()
+        {
+            int totalEmpWage = 0;
+            int totalEmpHrs = 0;
+            int totalDays = 0;
+
+            while( totalEmpHrs <= MAX_HRS_IN_MONTH && totalDays < NUM_OF_WORKING_DAYS)
+            {
+                totalDays++;
+                int empWage = EmployeeDailyWage();
+                if(empWage == 160)
+                {
+                    totalEmpHrs += 8;
+                }
+                else if(empWage == 80)
+                {
+                    totalEmpHrs += 4;
+                }
+                totalEmpWage += empWage;
+            }
+            totalEmpWage = totalEmpHrs * WAGE_PER_HOUR;
+            Console.WriteLine(totalEmpWage);
         }
     }
 }
