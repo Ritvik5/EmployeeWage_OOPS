@@ -10,12 +10,11 @@ namespace EmployeeWageOops
     public class EmployeWage
     {
         public const int WAGE_PER_HOUR = 20;
-        public const int FULL_TIME = 8;
 
         public static int EmployeeAttende()
         {
             Random random = new Random();
-            int check = random.Next(0,2);
+            int check = random.Next(0,3);
             return check;
         }
 
@@ -24,16 +23,21 @@ namespace EmployeeWageOops
             int check = EmployeeAttende();
             int empHrs = 0 ;
             int empWage = 0 ;
-            if (check == 0)
+            switch (check)
             {
+                case 0:
                 empHrs = 8 ;
-            }
-            else
-            {
+                break;
+                case 1:
+                empHrs = 4 ;
+                break;
+                default: 
                 empHrs = 0 ;
+                break;
+
             }
             empWage = empHrs * WAGE_PER_HOUR;
-            Console.WriteLine("The employee wage is "+empWage);
+            Console.WriteLine("The Employee Wage is "+empWage);
         }
     }
 }
