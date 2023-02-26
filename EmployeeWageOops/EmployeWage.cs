@@ -9,20 +9,31 @@ namespace EmployeeWageOops
 {
     public class EmployeWage
     {
-        public static void EmployeeAttende()
-        {
-            Console.WriteLine("Welcome to Employee Wage Program\n ");
+        public const int WAGE_PER_HOUR = 20;
+        public const int FULL_TIME = 8;
 
+        public static int EmployeeAttende()
+        {
             Random random = new Random();
             int check = random.Next(0,2);
+            return check;
+        }
+
+        public static void EmployeeDailyWage() 
+        {
+            int check = EmployeeAttende();
+            int empHrs = 0 ;
+            int empWage = 0 ;
             if (check == 0)
             {
-                Console.WriteLine("Employee is Present");
+                empHrs = 8 ;
             }
             else
             {
-                Console.WriteLine("Employee is Absent");
+                empHrs = 0 ;
             }
+            empWage = empHrs * WAGE_PER_HOUR;
+            Console.WriteLine("The employee wage is "+empWage);
         }
     }
 }
