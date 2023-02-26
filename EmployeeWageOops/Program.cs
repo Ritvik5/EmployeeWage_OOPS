@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            EmployeWage.EmployeeDailyWage();
+            EmployeWage.EmployeeMonthlyWage();
         }
     }
 }

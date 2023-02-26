@@ -10,6 +10,7 @@ namespace EmployeeWageOops
     public class EmployeWage
     {
         public const int WAGE_PER_HOUR = 20;
+        public const int NUM_OF_WORKING_DAYS = 20;
 
         public static int EmployeeAttende()
         {
@@ -18,7 +19,7 @@ namespace EmployeeWageOops
             return check;
         }
 
-        public static void EmployeeDailyWage() 
+        public static int EmployeeDailyWage() 
         {
             int check = EmployeeAttende();
             int empHrs = 0 ;
@@ -37,7 +38,18 @@ namespace EmployeeWageOops
 
             }
             empWage = empHrs * WAGE_PER_HOUR;
-            Console.WriteLine("The Employee Wage is "+empWage);
+            return empWage;
+        }
+
+        public static void EmployeeMonthlyWage()
+        {
+            int totalEmpWage = 0 ;
+            for(int i = 1; i<= NUM_OF_WORKING_DAYS; i++)
+            {
+                totalEmpWage += EmployeeDailyWage();
+            }
+            Console.WriteLine(totalEmpWage);
+            
         }
     }
 }
