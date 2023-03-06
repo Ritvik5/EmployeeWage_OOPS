@@ -12,12 +12,26 @@ namespace EmployeeWageOops
         public const int IS_PART_TIME = 1;
         public const int IS_FULL_TIME = 2;
 
-        public static int ComputeEmpWage(string company, int wagePerHrs, int numOfWorkingDays, int maxHrsPerMonth)
+        private string company;
+        private int wagePerHrs;
+        private int numOfWorkingDays;
+        private int maxHrsPerMonth;
+        private int totalEmpWage;
+
+        public EmployeWage(string company ,int wagePerHrs ,int numOfWorkingDays ,int maxHrsPerMonth) 
+        {
+            this.company = company;
+            this.wagePerHrs = wagePerHrs;
+            this.numOfWorkingDays = numOfWorkingDays;
+            this.maxHrsPerMonth = maxHrsPerMonth;
+        }
+
+        public void ComputeEmpWage()
         {
             int empHrs =0;
             int totalEmpHrs =0;
             int totalWorkingDays =0;
-            while( totalEmpHrs < maxHrsPerMonth && totalWorkingDays < numOfWorkingDays ) 
+            while( totalEmpHrs <= this.maxHrsPerMonth && totalWorkingDays < this.numOfWorkingDays ) 
             {
                 totalWorkingDays++;
                 Random random = new Random();
@@ -28,7 +42,7 @@ namespace EmployeeWageOops
                         empHrs = 8;
                         break;
                     case IS_PART_TIME:
-                        empHrs = 4;
+                        empHrs = 4; 
                         break;
                     default:
                         empHrs = 0;
@@ -37,9 +51,11 @@ namespace EmployeeWageOops
                 totalEmpHrs += empHrs;
                 Console.WriteLine("Days#: " +totalWorkingDays + " EmpHrs : " +empHrs);
             }
-            int totalEmpWage = totalEmpHrs * wagePerHrs;
-            Console.WriteLine("Total Emp Wage for Company : " + company + " is : " + totalEmpWage);
-            return totalEmpWage;
+            totalEmpWage = totalEmpHrs * this.wagePerHrs;
+        }
+        public string GetCompany() 
+        {
+            return "Total Emp Wage for Company : " + this.company + " is :" + this.totalEmpWage; 
         }
     }
 }
