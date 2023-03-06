@@ -9,72 +9,37 @@ namespace EmployeeWageOops
 {
     public class EmployeWage
     {
-        public const int WAGE_PER_HOUR = 20;
-        public const int NUM_OF_WORKING_DAYS = 20;
-        public const int MAX_HRS_IN_MONTH = 100;
+        public const int IS_PART_TIME = 1;
+        public const int IS_FULL_TIME = 2;
 
-        public static int EmployeeAttende()
+        public static int ComputeEmpWage(string company, int wagePerHrs, int numOfWorkingDays, int maxHrsPerMonth)
         {
-            Random random = new Random();
-            int check = random.Next(0,3);
-            return check;
-        }
-
-        public static int EmployeeDailyWage() 
-        {
-            int check = EmployeeAttende();
-            int empHrs = 0 ;
-            int empWage = 0 ;
-            switch (check)
+            int empHrs =0;
+            int totalEmpHrs =0;
+            int totalWorkingDays =0;
+            while( totalEmpHrs < maxHrsPerMonth && totalWorkingDays < numOfWorkingDays ) 
             {
-                case 0:
-                empHrs = 8 ;
-                break;
-                case 1:
-                empHrs = 4 ;
-                break;
-                default: 
-                empHrs = 0 ;
-                break;
-
+                totalWorkingDays++;
+                Random random = new Random();
+                int check = random.Next( 0, 3);
+                switch( check )
+                {
+                    case IS_FULL_TIME:
+                        empHrs = 8;
+                        break;
+                    case IS_PART_TIME:
+                        empHrs = 4;
+                        break;
+                    default:
+                        empHrs = 0;
+                        break;
+                }
+                totalEmpHrs += empHrs;
+                Console.WriteLine("Days#: " +totalWorkingDays + " EmpHrs : " +empHrs);
             }
-            empWage = empHrs * WAGE_PER_HOUR;
-            return empWage;
-        }
-
-        public static int EmployeeMonthlyWage()
-        {
-            int totalEmpWage = 0 ;
-            for(int i = 1; i<= NUM_OF_WORKING_DAYS; i++)
-            {
-                totalEmpWage += EmployeeDailyWage();
-            }
+            int totalEmpWage = totalEmpHrs * wagePerHrs;
+            Console.WriteLine("Total Emp Wage for Company : " + company + " is : " + totalEmpWage);
             return totalEmpWage;
-            
-        }
-
-        public static void EmpWageCondition()
-        {
-            int totalEmpWage = 0;
-            int totalEmpHrs = 0;
-            int totalDays = 0;
-
-            while( totalEmpHrs <= MAX_HRS_IN_MONTH && totalDays < NUM_OF_WORKING_DAYS)
-            {
-                totalDays++;
-                int empWage = EmployeeDailyWage();
-                if(empWage == 160)
-                {
-                    totalEmpHrs += 8;
-                }
-                else if(empWage == 80)
-                {
-                    totalEmpHrs += 4;
-                }
-                totalEmpWage += empWage;
-            }
-            totalEmpWage = totalEmpHrs * WAGE_PER_HOUR;
-            Console.WriteLine(totalEmpWage);
         }
     }
 }

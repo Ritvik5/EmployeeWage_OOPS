@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            EmployeWage.EmpWageCondition();
+            EmployeWage.ComputeEmpWage("DMart", 20, 2, 10);
+            EmployeWage.ComputeEmpWage("Reliance", 10, 4, 20);
         }
     }
 }
